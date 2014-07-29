@@ -1,9 +1,13 @@
 require_relative 'iim/data_set'
 require_relative 'iim/mean_generator'
 
+require 'pry'
+
 module IIM
-  def self.perform(filename = 'data.txt', sample_size = nil)
-    mean_generator = MeanGenerator.new(filename, sample_size)
-    mean_generator.print!
+  def self.perform!(filename = 'data.txt')
+    mean_generator = MeanGenerator.new(filename)
+    mean_generator.perform!
   end
 end
+
+IIM.perform!

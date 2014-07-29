@@ -25,6 +25,4 @@ Gem::Specification.new do |s|
   # dependencies
   s.add_development_dependency 'rspec', '~> 2.14'
   s.add_development_dependency 'pry'
-  s.add_development_dependency 'ruby-vips'
-  s.add_development_dependency 'miro'
 end
