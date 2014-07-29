@@ -14,7 +14,6 @@ module IIM
         file.each_line do |item|
           self.data_set << item.to_i
           if data_set.size > 3
-            # binding.pry
             puts "#{data_set.size}: #{"%.2f" % data_set.interquartile_mean}"
           end
         end
