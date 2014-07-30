@@ -1,10 +1,10 @@
-OPTIMIZATION
+REFACTORING
 
 1. Explain your improvement process, and why you chose each step.
 
   Well, the first step was understanding the code that was written.  Variables
   named `q` and `ys` (which I still have no idea what it stands for) seemed to
-  hold arbitrary values and go through convolution modifications.
+  hold arbitrary values and go through convoluted modifications.
 
   For example, on line 8:
 
