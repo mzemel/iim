@@ -5,9 +5,9 @@ module IIM
     attr_accessor :data,
                   :size
 
-    def initialize
-      self.data = []
-      self.size = 0
+    def initialize(_data = nil, _size = nil)
+      self.data = _data || []
+      self.size = _size || 0
     end
 
     def <<(item)
