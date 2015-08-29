@@ -1,2 +1,4 @@
 *.csv
 .ruby-version
+analysis/images/
+analysis/writeup*

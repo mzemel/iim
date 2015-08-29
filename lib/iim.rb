@@ -12,14 +12,16 @@ module IIM
   end
 end
 
-module IIM::Async
+class IIM::Async
   class << self
+    attr_accessor :data
+
     def perform!
       #####
       # Setup
       set_size     = get_set_size
       sub_set_size = get_sub_set_size
-      data         = get_data(set_size)
+      self.data    = get_data(set_size)
       threads      = []
       print "."
 
@@ -39,16 +41,16 @@ module IIM::Async
       real_iqm = IIM::DataSet.new(data, data.size).interquartile_mean
       real_iqm_time = Time.now.to_f * 1000.0 - start
 
-      update_histogram({
-        set_size: set_size,
-        sub_set_size: sub_set_size,
-        est_iqm: est_iqm,
-        est_iqm_time: est_iqm_time,
-        real_iqm: real_iqm,
-        real_iqm_time: real_iqm_time
-        })
+      update_histogram(
+        set_size,
+        sub_set_size,
+        est_iqm,
+        est_iqm_time,
+        real_iqm,
+        real_iqm_time
+        )
 
-      remove_data_file(set_size) # remove this to speed up program; keep it to generate samples for histogram
+      #remove_data_file(set_size) # Disabling to get constant real IQM for stdev IQM
     end
 
     def get_set_size
@@ -89,8 +91,8 @@ module IIM::Async
       end
     end
 
-    def update_histogram(set_size:, sub_set_size:, est_iqm:, est_iqm_time:, real_iqm:, real_iqm_time:)
-      File.open("histogram.csv", "a") do |f|
+    def update_histogram(set_size, sub_set_size, est_iqm, est_iqm_time, real_iqm, real_iqm_time)
+      File.open("analysis/histogram.csv", "a") do |f|
         f << [set_size, sub_set_size, est_iqm, est_iqm_time, real_iqm, real_iqm_time].join(",")
         f << "\n"
       end
